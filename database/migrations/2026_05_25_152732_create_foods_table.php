@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
 {
         Schema::create('foods', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->string('nama_makanan');
-        $table->text('deskripsi')->nullable();
-        $table->integer('jumlah');
-        $table->string('lokasi');
-        $table->dateTime('expired_at')->nullable();
-        $table->string('gambar')->nullable();
-        $table->enum('status', ['tersedia', 'habis'])->default('tersedia');
-        $table->timestamps();
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('nama_makanan');
+            $table->text('deskripsi')->nullable();
+            $table->integer('jumlah');
+            $table->string('lokasi');
+            $table->dateTime('expired_at')->nullable();
+            $table->string('gambar')->nullable();
+            $table->enum('status', ['tersedia', 'habis'])->default('tersedia');
+            $table->timestamps();
     });
 }
 

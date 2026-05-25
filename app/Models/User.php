@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role', //agar kolom role diijinkan terisi data
     ];
 
     /**
@@ -45,5 +46,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // ==========================================
+    // Tambahan Fungsi Relasi Antar Tabel
+    // ==========================================
+
+    // Relasi: Satu User bisa mendonasikan banyak makanan
+    public function foods()
+    {
+        return $this->hasMany(Food::class);
+    }
+
+    // Relasi: Satu User bisa melakukan banyak klaim makanan
+    public function claims()
+    {
+        return $this->hasMany(Claim::class);
     }
 }
