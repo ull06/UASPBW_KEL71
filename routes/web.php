@@ -1,31 +1,35 @@
 <?php
 
-use App\Http\Controllers\ClaimController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\ClaimController;
+
 use Illuminate\Support\Facades\Route;
 
-// 1. Halaman Utama / Landing Page (Sebelum Login)
+// Halaman dashboard default bawaan Breeze (Bisa dipakai Admin sementara waktu)
 Route::get('/', function () {
     return view('welcome');
 });
 
-// 2. Kelompok Halaman Dashboard (Setelah Login)
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Semua rute di bawah ini wajib LOGIN dulu baru bisa diakses
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// 3. Kelompok Route untuk Manajemen Makanan (Foods)
-Route::prefix('foods')->name('foods.')->group(function () {
-    Route::get('/', [FoodController::class, 'index'])->name('index');          // Tampil semua makanan
-    Route::get('/create', [FoodController::class, 'create'])->name('create');    // Form tambah makanan
-    Route::post('/', [FoodController::class, 'store'])->name('store');         // Proses simpan makanan baru
-    Route::get('/{food}/edit', [FoodController::class, 'edit'])->name('edit');   // Form edit makanan
-    Route::put('/{food}', [FoodController::class, 'update'])->name('update');    // Proses simpan perubahan
-    Route::delete('/{food}', [FoodController::class, 'destroy'])->name('destroy'); // Proses hapus makanan
+// RUTE UTAMA KAMU: Kelola Makanan (Donor)
+Route::middleware('auth')->group(function () {
+
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Foods (Donor)
+    Route::resource('foods', FoodController::class);
+
+    // Claims (Receiver)
+    Route::resource('claims', ClaimController::class);
+
 });
 
-// 4. Kelompok Route untuk Klaim Makanan (Claims)
-Route::prefix('claims')->name('claims.')->group(function () {
-    Route::get('/', [ClaimController::class, 'index'])->name('index');          // Tampil riwayat klaim
-    Route::post('/{food}', [ClaimController::class, 'store'])->name('store');    // Proses melakukan klaim makanan
-    Route::put('/{claim}/status', [ClaimController::class, 'updateStatus'])->name('updateStatus'); // Donor menyetujui/menolak klaim
-}); 
+require __DIR__.'/auth.php';
