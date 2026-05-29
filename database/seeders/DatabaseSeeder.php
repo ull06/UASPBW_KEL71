@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         // Kita panggil FoodSeeder agar mengeksekusi data
         $this->call([
+            UserSeeder::class,
             FoodSeeder::class,
         ]);
     }

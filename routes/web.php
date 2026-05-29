@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ClaimController;
+use App\Http\Controllers\AdminController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,12 @@ Route::middleware('auth')->group(function () {
     // Claims (Receiver)
     Route::resource('claims', ClaimController::class);
 
-});
+    // Admin
+        Route::prefix('admin')->group(function () {
+            Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+            Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+            Route::get('/claims', [AdminController::class, 'claims'])->name('admin.claims');
+        });
 
+});
 require __DIR__.'/auth.php';

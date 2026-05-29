@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
         
         // Pengecekan role saat login
         if ($user->role === 'admin') {
-            return redirect()->route('dashboard');
+            return redirect()->route('admin.dashboard');
         } elseif ($user->role === 'donor') {
             return redirect()->route('foods.index'); 
         } else {
