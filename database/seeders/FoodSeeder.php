@@ -15,7 +15,7 @@ class FoodSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Buat User Contoh ke-1: Sebagai Donor (Pemberi Makanan)
+        // 1. Sebagai Donor (Pemberi Makanan)
         $donor = User::create([
             'name' => 'Rahmatul Ulya',
             'email' => 'ulya@example.com',
@@ -23,7 +23,7 @@ class FoodSeeder extends Seeder
             'role' => 'donor', // Sudah sesuai dengan enum role di migration
         ]);
 
-        // 2. Buat User Contoh ke-2: Sebagai Receiver (Penerima/Pengambil Makanan)
+        // 2. Sebagai Receiver (Penerima/Pengambil Makanan)
         $receiver = User::create([
             'name' => 'Budi Santoso',
             'email' => 'budi@example.com',

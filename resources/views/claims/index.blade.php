@@ -107,11 +107,27 @@
                             <p><strong>Lokasi:</strong> <span class="text-gray-800 font-medium">{{ $food->lokasi }}</span></p>
                             <p><strong>Expired:</strong> <span class="text-red-600 font-medium">{{ $food->expired_at }}</span></p>
                             <p>
-                                <strong>Status:</strong> 
-                                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase ml-1">
+
+                             @php
+                                $statusClass = '';
+
+                                if ($food->status == 'tersedia') {
+                                    $statusClass = 'bg-green-100 text-green-800';
+                                } elseif ($food->status == 'diklaim') {
+                                    $statusClass = 'bg-yellow-100 text-yellow-800';
+                                } elseif ($food->status == 'habis') {
+                                    $statusClass = 'bg-red-100 text-red-800';
+                                }
+                            @endphp
+
+                                <p>
+                                <strong>Status:</strong>
+
+                                <span class="{{ $statusClass }} text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase ml-1">
                                     {{ $food->status }}
                                 </span>
                             </p>
+
                         </div>
 
                         {{-- AREA AKSI --}}
@@ -137,7 +153,7 @@
                                        placeholder="Jumlah porsi" 
                                        class="border border-gray-300 rounded-lg px-3 py-2 w-40 text-sm focus:border-green-500 focus:ring-1 focus:ring-green-500">
 
-                                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm transition font-medium shadow-sm whitespace-nowrap">
+                                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-sm transition font-semibold shadow-sm whitespace-nowrap">
                                     Klaim
                                 </button>
                             </form>
