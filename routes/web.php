@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 
 use Illuminate\Support\Facades\Route;
 
-// Halaman dashboard default bawaan Breeze (Bisa dipakai Admin sementara waktu)
+// Halaman dashboard default bawaan Breeze
 Route::get('/', function () {
     return view('welcome');
 });
@@ -17,7 +17,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// RUTE UTAMA KAMU: Kelola Makanan (Donor)
+// RUTE UTAMA JALUR LOGIN
 Route::middleware('auth')->group(function () {
 
     // Profile
@@ -29,13 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('foods', FoodController::class);
 
     // Claims (Receiver)
+    Route::get('/claim-history',[ClaimController::class, 'history'])
+    ->name('claims.history');
     Route::resource('claims', ClaimController::class);
 
     // Admin
-        Route::prefix('admin')->group(function () {
-            Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-            Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-            Route::get('/claims', [AdminController::class, 'claims'])->name('admin.claims');
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+        Route::get('/claims', [AdminController::class, 'claims'])->name('admin.claims');
         });
 
 });
