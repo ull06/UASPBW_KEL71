@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
+    protected $fillable = [
+    'user_id',
+    'nama_makanan',
+    'deskripsi',
+    'jumlah',
+    'lokasi',
+    'expired_at',
+    'gambar',
+    'status'
+];
     use HasFactory;
 
     // Menegaskan nama tabel di database

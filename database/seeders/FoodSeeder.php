@@ -43,6 +43,8 @@ class FoodSeeder extends Seeder
             'status' => 'tersedia', // Sesuai enum: ['tersedia', 'habis']
         ]);
 
+        
+
         $nasiGoreng = Food::create([
             'user_id' => $donor->id,
             'nama_makanan' => 'Nasi Goreng Kampung',
