@@ -13,7 +13,7 @@ class AdminController extends Controller
     {
         $totalUsers = User::where('role', '!=', 'admin')->count();
         $totalFoods = Food::count();
-        $totalClaims = Claim::where('status', 'approved')->count();
+        $totalClaims = Claim::where('status', 'accepted')->count();
         $pendingClaims = Claim::where('status', 'pending')->count();
 
         return view('admin.dashboard', compact(
