@@ -57,16 +57,19 @@
                        class="w-full border p-2">
             </div>
 
-            <!-- GAMBAR LAMA -->
             @if($food->gambar)
                 <div class="mb-4">
                     <p class="text-sm text-gray-500">Gambar saat ini:</p>
-                    <img src="{{ asset('storage/' . $food->gambar) }}"
-                         class="w-40 rounded mt-2">
+                    @if(str_starts_with($food->gambar, 'images/'))
+                        {{-- Jika dari seeder, langsung panggil dari folder public --}}
+                        <img src="{{ asset($food->gambar) }}" class="w-40 rounded mt-2">
+                    @else
+                        {{-- Jika dari upload form web, panggil dari folder storage --}}
+                        <img src="{{ asset('storage/' . $food->gambar) }}" class="w-40 rounded mt-2">
+                    @endif
                 </div>
             @endif
 
-            <!-- GAMBAR BARU -->
             <div class="mb-4">
                 <label>Ganti Gambar (opsional)</label>
                 <input type="file"
@@ -75,9 +78,9 @@
             </div>
 
             <!-- BUTTON -->
-            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                Update
-            </button>
+          <x-primary-button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition tracking-normal normal-case">
+            {{ __('Update Makanan') }}
+        </x-primary-button>
 
         </form>
 

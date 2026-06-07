@@ -7,27 +7,25 @@
 
     <div class="py-6 max-w-7xl mx-auto px-4">
         <!-- STATISTIK DASHBOARD -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <!-- TOTAL -->
+            <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-sm">
+                <h3 class="text-sm">Total Makanan</h3>
+                <p class="text-2xl font-bold">{{ $totalFoods }}</p>
+            </div>
 
-    <!-- TOTAL -->
-    <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-sm">
-        <h3 class="text-sm">Total Makanan</h3>
-        <p class="text-2xl font-bold">{{ $totalFoods }}</p>
-    </div>
+            <!-- TERSEDIA -->
+            <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-sm">
+                <h3 class="text-sm">Tersedia</h3>
+                <p class="text-2xl font-bold">{{ $tersedia }}</p>
+            </div>
 
-    <!-- TERSEDIA -->
-    <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-sm">
-        <h3 class="text-sm">Tersedia</h3>
-        <p class="text-2xl font-bold">{{ $tersedia }}</p>
-    </div>
-
-    <!-- HABIS -->
-    <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-sm">
-        <h3 class="text-sm">Habis</h3>
-        <p class="text-2xl font-bold">{{ $habis }}</p>
-    </div>
-
-</div>
+            <!-- HABIS -->
+            <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-sm">
+                <h3 class="text-sm">Habis</h3>
+                <p class="text-2xl font-bold">{{ $habis }}</p>
+            </div>
+        </div>
 
         <!-- BUTTON TAMBAH -->
         <div class="mb-6">
@@ -45,15 +43,26 @@
                 <!-- CARD -->
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden">
 
-                    <!-- GAMBAR -->
-                    @if($food->gambar)
-                        <img src="{{ asset('storage/' . $food->gambar) }}"
-                             class="w-full h-48 object-cover">
-                    @else
-                        <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
-                            Tidak ada gambar
-                        </div>
-                    @endif
+                    <!-- GAMBAR (BAGIAN YANG DI-UPDATE BIAR OTOMATIS) -->
+                    <div class="w-full h-48 bg-gray-100 flex items-center justify-center border-b border-gray-100 relative overflow-hidden">
+                        @if($food->gambar)
+                            @if(str_starts_with($food->gambar, 'images/'))
+                                {{-- 1. Ambil dari folder public/images (Untuk Seeder) --}}
+                                <img src="{{ asset($food->gambar) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                            @else
+                                {{-- 2. Ambil dari folder storage (Untuk Hasil Upload Web) --}}
+                                <img src="{{ asset('storage/' . $food->gambar) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                            @endif
+                        @else
+                            {{-- 3. Jika tidak ada gambar sama sekali --}}
+                            <div class="text-center text-gray-400 p-4">
+                                <svg class="mx-auto h-8 w-8 text-gray-300 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span class="text-xs">Tidak ada gambar</span>
+                            </div>
+                        @endif
+                    </div>
 
                     <div class="p-4">
 
@@ -88,30 +97,25 @@
                         </div>
 
                         <!-- ACTION -->
-                       <div class="mt-4 flex gap-2">
+                        <div class="mt-4 flex gap-2">
+                            <!-- EDIT BUTTON (SOFT) -->
+                            <a href="{{ route('foods.edit', $food->id) }}"
+                               class="px-3 py-1 text-sm rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+                                Edit
+                            </a>
 
-                        <!-- EDIT BUTTON (SOFT) -->
-                        <a href="{{ route('foods.edit', $food->id) }}"
-                        class="px-3 py-1 text-sm rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
-                            Edit
-                        </a>
-
-                        <!-- DELETE BUTTON (SOFT RED) -->
-                        <form action="{{ route('foods.destroy', $food->id) }}"
-                            method="POST"
-                            onsubmit="return confirm('Yakin ingin menghapus makanan ini?')">
-
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit"
-                                    class="px-3 py-1 text-sm rounded-md border border-red-200 text-red-600 hover:bg-red-50 transition">
-                                Hapus
-                            </button>
-
-                        </form>
-
-                    </div>
+                            <!-- DELETE BUTTON (SOFT RED) -->
+                            <form action="{{ route('foods.destroy', $food->id) }}"
+                                  method="POST"
+                                  onsubmit="return confirm('Yakin ingin menghapus makanan ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="px-3 py-1 text-sm rounded-md border border-red-200 text-red-600 hover:bg-red-50 transition">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
 
                     </div>
                 </div>
@@ -119,13 +123,12 @@
             @empty
 
                 <!-- JIKA DATA KOSONG -->
-                <div class="col-span-3 text-center text-gray-500">
+                <div class="col-span-3 text-center text-gray-500 py-12">
                     Belum ada makanan yang ditambahkan
                 </div>
 
             @endforelse
 
         </div>
-
     </div>
 </x-app-layout>

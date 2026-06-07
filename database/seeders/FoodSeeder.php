@@ -39,7 +39,7 @@ class FoodSeeder extends Seeder
             'jumlah' => 5,
             'lokasi' => 'Banda Aceh',
             'expired_at' => now()->addHours(6),
-            'gambar' => null,
+            'gambar' => 'images/mie_aceh.png',
             'status' => 'tersedia', // Sesuai enum: ['tersedia', 'habis']
         ]);
 

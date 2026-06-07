@@ -79,11 +79,18 @@
                 @forelse ($foods as $food)
                     <div class="border border-gray-200 rounded-xl p-6 mb-6 shadow-sm hover:shadow transition bg-white">
                     
-                        {{-- WADAH GAMBAR MAKANAN --}}
-                        <div class="mb-4 w-full h-48 bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center border border-gray-100">
+                       {{-- LOGIKA BARU: WADAH GAMBAR DINAMIS (PUBLIC & STORAGE) --}}
+                        <div class="mb-4 w-full h-48 bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center border border-gray-100 relative">
                             @if($food->gambar)
-                                <img src="{{ asset('storage/' . $food->gambar) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                                @if(str_starts_with($food->gambar, 'images/'))
+                                    {{-- Jika gambar bawaan dari folder public/images --}}
+                                    <img src="{{ asset($food->gambar) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                                @else
+                                    {{-- Jika gambar hasil upload dari web (storage) --}}
+                                    <img src="{{ asset('storage/' . $food->gambar) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                                @endif
                             @else
+                                {{-- Jika tidak ada foto sama sekali --}}
                                 <div class="text-center text-gray-400 p-4">
                                     <svg class="mx-auto h-8 w-8 text-gray-300 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
