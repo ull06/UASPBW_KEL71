@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AnalyticsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +14,9 @@ Route::get('/', function () {
 
 // Semua rute di bawah ini wajib LOGIN dulu baru bisa diakses
 Route::get('/dashboard', function () {
+    if(Auth::user()->role === 'admin') {
+        return redirect()->route('admin.dashboard');
+    }
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -39,7 +41,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
         Route::get('/claims', [AdminController::class, 'claims'])->name('admin.claims');
-        Route::get('/analytics', [AnalyticsController::class, 'index'])->name('admin.analytics');
         });
 
 });
