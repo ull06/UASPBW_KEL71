@@ -1,16 +1,14 @@
 <style>
-    /* 1. Mengubah background header navigasi utama tempat logo menjadi Hijau Emerald */
     nav.bg-white {
         background-color: #047857 !important; /* Hijau Emerald ShareBite */
         border-bottom: 1px solid #065f46 !important;
     }
 
-    /* 2. Mengubah semua teks menu navigasi atas menjadi putih bersih agar terbaca */
     nav.bg-white a, nav.bg-white div {
         color: #ffffff !important;
     }
 
-    /* 3. PERBAIKAN DROPDOWN USER: Tombol nama di pojok kanan dibuat transparan dengan teks putih */
+   
     nav.bg-white button.inline-flex {
         background-color: transparent !important; /* Menghapus kotak putih polos */
         color: #ffffff !important; /* Membuat nama Budi Santoso jadi putih */
@@ -29,13 +27,12 @@
         fill: #ffffff !important;
     }
 
-    /* 4. Mengubah warna sub-header (Dashboard Receiver) menjadi Hijau Mint Pastel */
+
     header.bg-white {
         background-color: #ecfdf5 !important;
         border-bottom: 1px solid #dcf2e6 !important;
     }
 
-    /* 5. Mengubah teks "Dashboard Receiver" menjadi hijau gelap elegan */
     header.bg-white h2, header.bg-white span {
         color: #065f46 !important;
     }
