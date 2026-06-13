@@ -1,3 +1,46 @@
+<style>
+    /* 1. Mengubah background header navigasi utama tempat logo menjadi Hijau Emerald */
+    nav.bg-white {
+        background-color: #047857 !important; /* Hijau Emerald ShareBite */
+        border-bottom: 1px solid #065f46 !important;
+    }
+
+    /* 2. Mengubah semua teks menu navigasi atas menjadi putih bersih agar terbaca */
+    nav.bg-white a, nav.bg-white div {
+        color: #ffffff !important;
+    }
+
+    /* 3. DROPDOWN USER FIX: Tombol nama di pojok kanan dibuat transparan dengan teks putih */
+    nav.bg-white button.inline-flex {
+        background-color: transparent !important; 
+        color: #ffffff !important; 
+        border: 1px solid rgba(255, 255, 255, 0.2) !important; 
+        border-radius: 0.5rem !important;
+    }
+
+    /* Efek pas kursor nempel di tombol nama user */
+    nav.bg-white button.inline-flex:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Mengubah warna panah kecil (SVG) di sebelah nama user jadi putih */
+    nav.bg-white button.inline-flex svg {
+        stroke: #ffffff !important;
+        fill: #ffffff !important;
+    }
+
+    /* 4. Mengubah warna sub-header menjadi Hijau Mint Pastel */
+    header.bg-white {
+        background-color: #ecfdf5 !important;
+        border-bottom: 1px solid #dcf2e6 !important;
+    }
+
+    /* 5. Mengubah teks sub-header menjadi hijau gelap elegan */
+    header.bg-white h2, header.bg-white span {
+        color: #065f46 !important;
+    }
+</style>
+
 <x-app-layout>
 
     <x-slot name="header">
@@ -10,10 +53,15 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
 
-                <div class="mb-6 w-full h-80 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center border border-gray-200 shadow-sm">
+                <div class="mb-6 w-full h-80 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center border border-gray-200 shadow-sm relative">
                     @if($food->gambar)
-                        {{-- Memanggil file foto asli yang disimpan donor --}}
-                        <img src="{{ asset('storage/' . $food->gambar) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                        @if(str_starts_with($food->gambar, 'images/') && file_exists(public_path($food->gambar)))
+                            {{-- 1. Jika dari data seeder, ambil langsung dari folder public --}}
+                            <img src="{{ asset($food->gambar) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                        @else
+                            {{-- 2. Jika dari upload web, ambil lewat jembatan storage --}}
+                            <img src="{{ asset('storage/' . str_replace('images/', '', $food->gambar)) }}" alt="{{ $food->nama_makanan }}" class="w-full h-full object-cover">
+                        @endif
                     @else
                         {{-- Tampilan kalau donor kebetulan tidak upload foto --}}
                         <div class="text-center text-gray-400 p-4">
