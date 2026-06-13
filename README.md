@@ -1,5 +1,16 @@
 # ShareBite - Food Waste & Donation Platform
 
+## 👥 Anggota Kelompok 7
+
+| No | Nama | NPM |
+|----|------|-----|
+| 01 | Rahmatul Uliya | 2408107010012 |
+| 02 | Nayla Nabila Syahel | 2408107010005 |
+| 03 | Ulfa Khairina | 2408107010013 |
+| 04 | Meurahmah Nushsharie | 2408107010035 |
+
+---
+
 ## 📌 Deskripsi Aplikasi
 
 **ShareBite** adalah platform berbasis web yang dirancang untuk membantu mengurangi food waste (pemborosan makanan) dengan menghubungkan pihak yang memiliki makanan berlebih, seperti restoran, rumah makan, katering, hotel, maupun individu, dengan pihak yang membutuhkan.
