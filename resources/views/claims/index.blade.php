@@ -1,14 +1,16 @@
 <style>
+    /* 1. Mengubah background header navigasi utama tempat logo menjadi Hijau Emerald */
     nav.bg-white {
         background-color: #047857 !important; /* Hijau Emerald ShareBite */
         border-bottom: 1px solid #065f46 !important;
     }
 
+    /* 2. Mengubah semua teks menu navigasi atas menjadi putih bersih agar terbaca */
     nav.bg-white a, nav.bg-white div {
         color: #ffffff !important;
     }
 
-   
+    /* 3. DROPDOWN USER BUTTON: Tombol nama di pojok kanan dibuat transparan dengan teks putih */
     nav.bg-white button.inline-flex {
         background-color: transparent !important; /* Menghapus kotak putih polos */
         color: #ffffff !important; /* Membuat nama Budi Santoso jadi putih */
@@ -27,12 +29,32 @@
         fill: #ffffff !important;
     }
 
+    /* ====================================================================== */
+    /* 🔥 BAGIAN PERBAIKAN DROPDOWN LOGOUT AGAR NAMPAK KEMBALI KETIKA DIKLIK */
+    /* ====================================================================== */
+    nav.bg-white div.absolute a,
+    nav.bg-white div.absolute button,
+    div[x-show="open"] a,
+    div[x-show="open"] button {
+        color: #1f2937 !important; /* Mengembalikan teks Profile & Log Out jadi hitam/abu gelap */
+        background-color: #ffffff !important; /* Memastikan background menu tetap putih bersih */
+    }
 
+    /* Efek interaktif saat menu pilihan di dalam dropdown disorot kursor */
+    nav.bg-white div.absolute a:hover,
+    nav.bg-white div.absolute button:hover {
+        background-color: #f3f4f6 !important; /* Latar berubah abu-abu terang tipis */
+        color: #000000 !important;
+    }
+    /* ====================================================================== */
+
+    /* 4. Mengubah warna sub-header (Dashboard Receiver) menjadi Hijau Mint Pastel */
     header.bg-white {
         background-color: #ecfdf5 !important;
         border-bottom: 1px solid #dcf2e6 !important;
     }
 
+    /* 5. Mengubah teks "Dashboard Receiver" menjadi hijau gelap elegan */
     header.bg-white h2, header.bg-white span {
         color: #065f46 !important;
     }

@@ -29,6 +29,25 @@
         fill: #ffffff !important;
     }
 
+    /* ====================================================================== */
+    /* 🔥 BAGIAN PERBAIKAN DROPDOWN LOGOUT AGAR NAMPAK KEMBALI KETIKA DIKLIK */
+    /* ====================================================================== */
+    nav.bg-white div.absolute a,
+    nav.bg-white div.absolute button,
+    div[x-show="open"] a,
+    div[x-show="open"] button {
+        color: #1f2937 !important; /* Mengembalikan teks Profile & Log Out jadi hitam/abu gelap */
+        background-color: #ffffff !important; /* Memastikan background menu tetap putih bersih */
+    }
+
+    /* Efek interaktif saat menu pilihan di dalam dropdown disorot kursor */
+    nav.bg-white div.absolute a:hover,
+    nav.bg-white div.absolute button:hover {
+        background-color: #f3f4f6 !important; /* Latar berubah abu-abu terang tipis */
+        color: #000000 !important;
+    }
+    /* ====================================================================== */
+
     /* 4. Mengubah warna sub-header menjadi Hijau Mint Pastel */
     header.bg-white {
         background-color: #ecfdf5 !important;
