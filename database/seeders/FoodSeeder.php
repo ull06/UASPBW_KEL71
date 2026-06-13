@@ -39,7 +39,7 @@ class FoodSeeder extends Seeder
             'jumlah' => 5,
             'lokasi' => 'Banda Aceh',
             'expired_at' => now()->addHours(6),
-            'gambar' => 'images/mie_aceh.png',
+            'gambar' => 'images/mie aceh spesial.jpg',
             'status' => 'tersedia', // Sesuai enum: ['tersedia', 'habis']
         ]);
 
@@ -52,7 +52,7 @@ class FoodSeeder extends Seeder
             'jumlah' => 3,
             'lokasi' => 'Darussalam',
             'expired_at' => now()->addHours(4),
-            'gambar' => null,
+            'gambar' => 'images/nasi goreng kampung.jpg',
             'status' => 'tersedia', // Sesuai enum: ['tersedia', 'habis']
         ]);
 
@@ -63,7 +63,7 @@ class FoodSeeder extends Seeder
             'jumlah' => 10,
             'lokasi' => 'Aceh Besar',
             'expired_at' => now()->addHours(8),
-            'gambar' => null,
+            'gambar' => 'images/sate mateng.webp',
             'status' => 'tersedia', // Sesuai enum: ['tersedia', 'habis']
         ]);
 

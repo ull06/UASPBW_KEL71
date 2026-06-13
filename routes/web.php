@@ -14,10 +14,17 @@ Route::get('/', function () {
 
 // Semua rute di bawah ini wajib LOGIN dulu baru bisa diakses
 Route::get('/dashboard', function () {
-    if(Auth::user()->role === 'admin') {
+
+    if (Auth::user()->role === 'admin') {
         return redirect()->route('admin.dashboard');
     }
+
+    if (Auth::user()->role === 'donor') {
+        return redirect()->route('foods.index');
+    }
+
     return view('dashboard');
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // RUTE UTAMA JALUR LOGIN
