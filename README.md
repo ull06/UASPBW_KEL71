@@ -310,29 +310,30 @@ http://127.0.0.1:8000
 
 ## 📸 Screenshot Tampilan Aplikasi
 
-### Login Page
+### 🏠 Landing Page
+Halaman utama ShareBite yang menampilkan informasi platform donasi makanan dan daftar makanan tersedia secara realtime.
 
-* Halaman autentikasi pengguna untuk masuk ke sistem.
+![Landing Page](screenshots/Landingpage.jpeg)
 
-### Dashboard Admin
+### 🔐 Login Page
+Halaman autentikasi pengguna untuk masuk ke sistem ShareBite.
 
-* Menampilkan ringkasan statistik sistem.
-* Monitoring aktivitas donasi dan klaim.
+![Login Page](screenshots/Login.jpeg)
 
-### Daftar Makanan
+### 🛡️ Dashboard Admin
+Menampilkan ringkasan statistik sistem, grafik donasi & klaim per bulan, top makanan diklaim, serta analisis donasi berdasarkan lokasi.
 
-* Menampilkan daftar makanan yang tersedia untuk diklaim.
+![Dashboard Admin](screenshots/Statistik.jpeg)
 
-### Riwayat Klaim
+### 🤝 Dashboard Donor
+Halaman donor untuk mengelola daftar makanan yang didonasikan, lengkap dengan status ketersediaan dan fitur tambah makanan.
 
-* Menampilkan status klaim pengguna.
+![Dashboard Donor](screenshots/Donor.jpeg)
 
-### Dashboard Analytics
+### 📦 Dashboard Receiver
+Halaman penerima untuk melihat dan mengklaim daftar makanan tersedia berdasarkan lokasi terdekat.
 
-* Grafik donasi dan klaim per bulan.
-* Analisis status klaim.
-* Top makanan yang paling banyak diklaim.
-* Statistik donasi berdasarkan lokasi.
+![Dashboard Receiver](screenshots/Receiver.jpeg)
 
 ### Mockup Sistem ShareBite
 
